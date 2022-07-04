@@ -7,6 +7,16 @@ const getAll = async () => {
 	return lista;
 };
 
+const createTarefas = async (descricao, progresso) => {
+	const [product] = await connection.execute(
+	  'INSERT INTO lista_tarefas (descricao, progresso) VALUES (?, ?)',
+	  [descricao, progresso],
+	);
+	const newTarefa = { id: product.insertId, descricao, progresso };
+	return newTarefa;
+  };
+
 module.exports = {
 	getAll,
+  createTarefas,
 };

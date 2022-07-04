@@ -11,4 +11,13 @@ tarefas.get(
   }),
 );
 
+tarefas.post(
+  '/',
+  rescue(async (req, res) => {
+    const { descricao, progresso } = req.body;
+    const newTarefa = await listaTarefasService.create(descricao, progresso);
+    res.status(201).json(newTarefa);
+  }),
+);
+
 module.exports = tarefas;
