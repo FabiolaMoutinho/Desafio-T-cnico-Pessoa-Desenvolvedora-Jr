@@ -10,7 +10,13 @@ const create = async (descricao, progresso) => {
   return newTarefa;
 };
 
+const remove = async (id) => {
+  const tarefa = await listaTarefasModel.removeTarefa(id);
+  return tarefa;
+};
+
 module.exports = {
   getAll,
   create,
+  remove,
 };

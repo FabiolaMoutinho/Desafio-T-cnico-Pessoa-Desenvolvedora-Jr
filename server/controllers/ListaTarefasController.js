@@ -20,4 +20,13 @@ tarefas.post(
   }),
 );
 
+tarefas.delete(
+  '/:id',
+  rescue(async (req, res, next) => {
+    const { id } = req.params;
+    const tarefa = await listaTarefasService.remove(id);
+    res.status(200).send();
+  }),
+);
+
 module.exports = tarefas;
