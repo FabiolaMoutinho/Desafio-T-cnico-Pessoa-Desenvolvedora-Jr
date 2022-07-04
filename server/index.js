@@ -1,13 +1,17 @@
 const express = require('express')
+const Lista = require('./models/ListaTarefas');
 
 const app = express();
 
-app.get('/hello', handleHelloWorldRequest);
+const PORT = process.env.PORT || 3001;
 
-app.listen(3001, () => {
-  console.log('Aplicação ouvindo na porta 3001');
+app.get('/tarefas', tarefasRequest);
+
+app.listen(PORT, () => {
+  console.log(`Aplicação ouvindo na porta ${PORT}`);
 });
 
-function handleHelloWorldRequest(req, res) {
-  res.status(200).send('Hello World!');
+async function tarefasRequest(req, res) {
+  const lista = await Lista.getAll();
+  res.status(200).json(lista);
 }
