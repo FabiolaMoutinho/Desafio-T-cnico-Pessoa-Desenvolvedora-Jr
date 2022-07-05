@@ -22,9 +22,19 @@ tarefas.post(
 
 tarefas.delete(
   '/:id',
-  rescue(async (req, res, next) => {
+  rescue(async (req, res) => {
     const { id } = req.params;
-    const tarefa = await listaTarefasService.remove(id);
+    await listaTarefasService.remove(id);
+    res.status(200).send();
+  }),
+);
+
+tarefas.patch(
+  '/:id',
+  rescue(async (req, res) => {
+    const { id } = req.params;
+    const { descricao, progresso } = req.body;
+    await listaTarefasService.update(id, descricao, progresso);
     res.status(200).send();
   }),
 );

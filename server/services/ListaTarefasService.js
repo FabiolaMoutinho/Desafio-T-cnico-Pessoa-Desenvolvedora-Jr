@@ -15,8 +15,14 @@ const remove = async (id) => {
   return tarefa;
 };
 
+const update = async (id, descricao, progresso) => {
+  const productUpdate = await listaTarefasModel.updateTarefa(id, descricao, progresso);
+  return productUpdate;
+};
+
 module.exports = {
   getAll,
   create,
   remove,
+  update
 };

@@ -24,8 +24,17 @@ const removeTarefa = async (id) => {
   return tarefa;
 };
 
+const updateTarefa = async (id, descricao, progresso) => {
+  const updatedTarefa = await connection.execute(
+    'UPDATE lista_tarefas SET descricao = ?, progresso = ? WHERE id = ?',
+    [descricao, progresso, id],
+  );
+  return updatedTarefa;
+};
+
 module.exports = {
 	getAll,
 	createTarefas,
 	removeTarefa,
+	updateTarefa
 };
